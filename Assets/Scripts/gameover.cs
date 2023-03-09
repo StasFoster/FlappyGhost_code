@@ -9,10 +9,11 @@ public class gameover : MonoBehaviour
     public TextMeshProUGUI tex;
     public Transform panel, pos, zero_pos_block, zero_pos_player, player;
     public GameObject block;
-    private int Life = 3;
+    public static int Liferef = 3;
+    public static int Life = 3;
     public static Action game_over;
     public static bool game_end = true;
-    private void Start()
+    private void Update()
     {
         tex.text = Convert.ToString(Life);
     }
@@ -31,7 +32,7 @@ public class gameover : MonoBehaviour
             GameObject first = Instantiate(block, zero_pos_block.position, Quaternion.identity);
             generator.set_map.Add(first);
             move.pos = 0;
-            Life = 3;
+            Life = Liferef;
             player.position = zero_pos_player.position;
         }
     }
@@ -39,7 +40,7 @@ public class gameover : MonoBehaviour
     {
         while (a.position != b.position)
         {
-            a.position = Vector3.MoveTowards(a.position, b.position, 0.01f);
+            a.position = Vector3.MoveTowards(a.position, b.position, 0.07f);
             yield return new WaitForSeconds(0.0001f);
         }
     }

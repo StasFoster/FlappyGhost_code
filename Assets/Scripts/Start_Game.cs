@@ -13,6 +13,7 @@ public class Start_Game : MonoBehaviour
     }
     public void pusk()
     {
+        gameover.Life = gameover.Liferef;
         gameover.game_end = false;
         move.speed = 1f;
         StartCoroutine(difficulty.dif_time());
